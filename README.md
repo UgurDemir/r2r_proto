@@ -40,7 +40,13 @@ ln -s <dataset_dir>/CXR8/images/images_256 _datasets/cxr-14/
 
 - Download the pre-trained CvT weights (CvT-13-224x224-IN-1k.pth) from (https://1drv.ms/u/s!AhIXJn_J-blW9RzF3rMW7SsLHa8h?e=blQ0Al)
 - Modify the experiment configuration file to update the pre-trained weight file path
-
+```
+|exps/
+|-|cxr-14
+  |-r1.py
+  |-r7.py
+  |-r8.py
+```
 
 Run the following command to train the model;
 ```
