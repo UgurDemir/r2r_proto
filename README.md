@@ -14,8 +14,6 @@ Elif Keles, Bradley Allen, Aggelos K. Katsaggelos,
 Deployments of artificial intelligence in medical diagnostics mandate not just accuracy and efficacy but also trust, emphasizing the need for explainability in machine decisions. The recent trend in automated medical image diagnostics leans towards the deployment of Transformer-based architectures, credited to their impressive capabilities. Since the self-attention feature of transformers contributes towards identifying crucial regions during the classification process, they enhance the trustability of the methods. However, the complex intricacies of these attention mechanisms may fall short of effectively pinpointing the regions of interest directly influencing AI decisions. Our research endeavors to innovate a unique attention block that underscores the correlation between 'regions' rather than 'pixels'. To address this challenge, we introduce an innovative system grounded in prototype learning, featuring an advanced self-attention mechanism that goes beyond conventional ad-hoc visual explanation techniques by offering comprehensible visual insights. A combined quantitative and qualitative methodological approach was used to demonstrate the effectiveness of the proposed method on the large-scale NIH chest X-ray dataset. Experimental results showed that our proposed method offers a promising direction for explainability, which can lead to the development of more trustable systems, which can facilitate easier and rapid adoption of such technology into routine clinics.
 
 
-
-
 ## Architecture
 <p align="center">
   <img src="figs/attention_output_feat_combined_v2.png", width="1000"/>
@@ -32,14 +30,21 @@ We used the public NIH chest X-ray dataset. It consists of 112,120 frontal-view 
 
 
 ## Usage
-Update the CUDA_VERSION variable in requirements.sh file. Run the following line.
+- Download the dataset from (https://nihcc.app.box.com/v/ChestXray-NIHCC)
+- Resize images to 256x256
+- Link the image folder into _datasets/ with the following command.
+
 ```
-./requirements.sh
+ln -s <dataset_dir>/CXR8/images/images_256 _datasets/cxr-14/
 ```
 
-Example visualization code;
+- Download the pre-trained CvT weights (CvT-13-224x224-IN-1k.pth) from (https://1drv.ms/u/s!AhIXJn_J-blW9RzF3rMW7SsLHa8h?e=blQ0Al)
+- Modify the experiment configuration file to update the pre-trained weight file path
+
+
+Run the following command to train the model;
 ```
-python main.py -a iba --conf covid1 --layer layer2 --scale_size 512 --norm 01 -t 1 --inp <img_dir>/study_0953.nii.gz
+python train.py cxr-14.r7
 ```
 
 
