@@ -191,9 +191,9 @@ def generate_msg(opt, logmap, key_prefix):
 
 
 if __name__ == "__main__":
-    #assert len(sys.argv) == 2
-    #exp_name = sys.argv[1]
-    exp_name = 'cxr-14.r0'
+    assert len(sys.argv) == 2
+    exp_name = sys.argv[1]
+    #exp_name = 'cxr-14.r7'
     
     # Apply Configurations
     opt = configs.parse(exp_name)

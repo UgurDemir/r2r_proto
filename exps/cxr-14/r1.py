@@ -34,18 +34,8 @@ opt = {
     },
 
     # Model definition
-    # protonet: 'cls_layer': fc|xproto|pproto|var_xproto|var_pproto
-    'model': {  
-        #'arch':'hydravit',
-        #'arch':'protonet',
+    'model': {
         'arch': 'r2r_proto',
-
-        #'backbone': {'arch':'vgg16'},
-        #'backbone': {'arch':'resnet50', 'stride_layer2':2, 'stride_layer3':2, 'stride_layer4':2},
-        #'backbone': {'arch':'densenet201', 'transition_strides':[2,2,2,2]}, 
-        #'backbone': {'arch': 'swin_t'},
-        #'backbone': {'arch': 'maxvit_t'},
-        
         'num_classes':14,
 
         'context_encoder': {
@@ -77,72 +67,19 @@ opt = {
                 'PADDING_Q': [1, 1, 1],
                 'STRIDE_Q': [1, 1, 1]
             },
-            'pretrain': '/data/udd3022/weights/cvt/CvT-13-224x224-IN-1k.pth'
+            'pretrain': 'weights/cvt/CvT-13-224x224-IN-1k.pth'
         },
     
-        #'proto_layer': {
-            #'arch': 'fc',
-            #'bias': True
-
-            #'arch': 'mbo',
-            #'in_features': 512*4,
-            #'w_c': [0.7464113181504486, 3.620554021257009, 0.7137412766238266, 0.4484317018056678, 1.5320490119696863, 1.3127199902900837, 7.0551206784083496, 2.3436805894143777, 2.1670006010819476, 4.484967862326353, 4.343138239132617, 4.9402763503482925, 2.756594877023066, 43.831813576494426],
-            #'w_A': 1.0/15.0,
-
-            #'arch':'var_xproto_v2',
-            #'prototype_shape':(14*3, 128, 1, 1), 
-            #'prototype_activation_function':'linear', 
-            #'add_on_layers_type':'regular',
-            #'distance_type': 'cosine',
-
-            #'arch':'xproto',
-            #'prototype_shape':(14*3, 128, 1, 1), 
-            #'prototype_activation_function':'linear', 
-            #'add_on_layers_type':'regular',
-            #'distance_type': 'cosine',
-
-            #'arch': 'ppool',
-            #'num_prototypes': 15,
-            #'num_descriptive':10,
-            #'proto_depth': 256,
-            #'use_last_layer': True,
-            #'prototype_activation_function': 'log',
-
-            #'arch':'protop',
-            #'img_size': 512,
-            #'prototype_shape':(14*3, 512, 1, 1),
-            #'init_weights':True,
-            #'prototype_activation_function':'log',
-            #'add_on_layers_type':'linear'
-        #},
-
         'last_layer': {
             'arch': 'fc',
             'bias': True,
             'in_channels': 384
-            
-            #'arch':'class_wise_proto2logit',
-            #'in_channels':14*3,
-
-            #'arch': 'mbo',
-            #'in_channels': 14*3,
-            #'w_c': [0.7464113181504486, 3.620554021257009, 0.7137412766238266, 0.4484317018056678, 1.5320490119696863, 1.3127199902900837, 7.0551206784083496, 2.3436805894143777, 2.1670006010819476, 4.484967862326353, 4.343138239132617, 4.9402763503482925, 2.756594877023066, 43.831813576494426],
-            #'w_A': 1.0/15.0,
         }
     },
     #'resume': None,
 
 
-    # Optimizers
-    #'warm_optim': {'method':'Adam', 'weight_decay':1e-3},
-    #'warm_lrs': {'add_on_layers': 1e-3, 'prototype_vectors': 1e-3},
-    #'warm_lr_schedule': {'method': 'CosineAnnealingLR', 'T_max':100},
-
-    #'joint_optim': {'method':'Adam', 'weight_decay':1e-3},
-    #'joint_lrs': {'features': 1e-4, 'add_on_layers': 1e-3, 'prototype_vectors': 1e-3, 'last_layer_lr':1e-3},
-    #'joint_lr_schedule': {'method': 'CosineAnnealingLR', 'T_max':100},
-    #'joint_lr_schedule': {'method': 'StepLR', 'step_size':5, 'gamma':0.1},
-    
+    # Optimizers    
     'optim': {'method':'Adam', 'weight_decay':1e-4},
     'lr_schedule': {'method': 'CosineAnnealingLR', 'T_max':100},
     'lr': 1e-4,
@@ -150,16 +87,6 @@ opt = {
     # Loss Functions
     'loss':[
         ({'method':'WeightedBalanceLoss', 'gamma':2.0, 'apply_sigmoid':True}, 1.0),
-        #({'method':'BCEWithLogitsLoss'}, 1.0),
-        #({'method':'hydra_vit_mlce_loss'}, 1.0),
-        #({'method':'hydra_vit_cl_loss'}, 1.0),
-        #({'method':'cluster_loss_v1'}, 0.5),
-        #({'method':'separation_loss_v1'},  -0.5),
-        #({'method':'last_layer_l1'}, 1e-4),
-        #({'method':'last_layer_l1_with_pcid'}, 1e-4),
-        #({'method':'orthogonal_loss_v2'}, 0.5),
-        #({'method':'proto_kld'}, 0.00025),
-        #({'method':'feat_kld'}, 0.00025)
     ],
 
 
@@ -167,10 +94,7 @@ opt = {
     'start_epoch':0, 
     'epochs': 100,
     'warmup_epochs': 0,
-    #'last_layer_iter_epoch':20,
 
-
-    #'train_only_layers': [],
     #'clip_grad_norm': 1.0,
 
     # Best model selection criteria
