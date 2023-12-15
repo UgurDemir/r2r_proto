@@ -18,13 +18,13 @@ Deployments of artificial intelligence in medical diagnostics mandate not just a
 
 ## Architecture
 <p align="center">
-  <img src="figs/attention_output_feat_combined_v2.png", width="500"/>
+  <img src="figs/attention_output_feat_combined_v2.png", width="1000"/>
 </p>
 
 ## Results
 
 ### Lung CT
-We used public NIH chest X-ray dataset. It consists of 112,120 frontal-view X-ray images having 14 different types of disease labels obtained from 30,805 unique patients.
+We used the public NIH chest X-ray dataset. It consists of 112,120 frontal-view X-ray images having 14 different types of disease labels obtained from 30,805 unique patients.
 
 <p align="center">
   <img src="figs/mask_comparison_all.png", width="1000"/>
